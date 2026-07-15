@@ -2,152 +2,103 @@
 <html lang="uz">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="theme-color" content="#171428">
-
+<meta name="description" content="Telegram va Instagram uchun stiker yaratuvchi - Canva uslubida">
 <title>StickerMaker Pro</title>
-
-<link rel="manifest" href="manifest.json">
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="sidebar">
+<div class="app">
 
-<h2>🎨 StickerMaker</h2>
+  <header class="header">
+    <h1>🎨 StickerMaker Pro</h1>
+    <p>Telegram &amp; Instagram uchun stiker yarating</p>
+  </header>
 
-<button id="uploadBtn">
-📁 Rasm yuklash
-</button>
+  <div class="canvas-wrap">
+    <canvas id="canvas" width="1080" height="1080"></canvas>
+    <textarea id="textEditOverlay" class="text-edit-overlay"></textarea>
+  </div>
 
-<input
-type="file"
-id="imageLoader"
-accept="image/*"
-hidden>
+  <!-- Asosiy vositalar -->
+  <div class="toolbar">
+    <button id="uploadBtn" type="button">📁 Rasm</button>
+    <input type="file" id="imageLoader" accept="image/png,image/jpeg,image/webp" hidden>
+    <button id="textBtn" type="button">📝 Matn</button>
+    <button id="emojiBtn" type="button">😀 Emoji</button>
+    <button id="shapeBtn" type="button">⬜ Shakl</button>
+  </div>
 
-<hr>
+  <!-- Emoji paneli -->
+  <div id="emojiPanel" class="emoji-panel"></div>
 
-<button id="textBtn">
-📝 Matn qo'shish
-</button>
+  <!-- Shakl paneli -->
+  <div id="shapePanel" class="shape-panel">
+    <button type="button" data-shape="rect">⬜ Kvadrat</button>
+    <button type="button" data-shape="circle">⚫ Doira</button>
+    <button type="button" data-shape="triangle">🔺 Uchburchak</button>
+    <button type="button" data-shape="star">⭐ Yulduz</button>
+  </div>
 
-<button id="emojiBtn">
-😀 Emoji
-</button>
+  <!-- Tanlangan qatlam paneli -->
+  <div id="layerPanel" class="layer-panel">
+    <button id="editTextBtn" type="button" class="mini">✏️ Tahrirlash</button>
+    <input type="color" id="colorPicker" value="#ffffff">
+    <button id="flipX" type="button" class="mini">↔ Flip</button>
+    <button id="flipY" type="button" class="mini">↕ Flip</button>
+    <button id="deleteLayer" type="button" class="mini danger">🗑 O'chirish</button>
+  </div>
 
-<button id="shapeBtn">
-⬜ Shakl
-</button>
+  <p id="controlsHint" class="hint">👆 Avval elementni tanlang</p>
 
-<hr>
+  <div class="sliders">
+    <label for="zoom">Zoom: <span id="zoomVal">100%</span></label>
+    <input type="range" id="zoom" min="10" max="400" value="100" disabled>
 
-<label>Zoom</label>
+    <label for="rotate">Aylantirish: <span id="rotateVal">0°</span></label>
+    <input type="range" id="rotate" min="-180" max="180" value="0" disabled>
 
-<input
-type="range"
-id="zoom"
-min="10"
-max="300"
-value="100">
+    <label for="opacity">Shaffoflik: <span id="opacityVal">100%</span></label>
+    <input type="range" id="opacity" min="0" max="100" value="100" disabled>
+  </div>
 
-<label>Rotate</label>
+  <hr>
 
-<input
-type="range"
-id="rotate"
-min="-180"
-max="180"
-value="0">
+  <div class="frame-section">
+    <label for="frameStyle">Ramka uslubi</label>
+    <select id="frameStyle">
+      <option value="none">Yo'q</option>
+      <option value="white">Oq</option>
+      <option value="black">Qora</option>
+      <option value="gradient">Gradient</option>
+    </select>
 
-<label>Opacity</label>
+    <label for="frameSize">Qalinlik: <span id="frameSizeVal">12px</span></label>
+    <input type="range" id="frameSize" min="0" max="50" value="12">
 
-<input
-type="range"
-id="opacity"
-min="0"
-max="100"
-value="100">
+    <label class="checkbox-label">
+      <input type="checkbox" id="shadowCheck" checked>
+      Soya qo'shish
+    </label>
+  </div>
 
-<hr>
+  <hr>
 
-<label>Ramka</label>
+  <div class="history-row">
+    <button id="undo" type="button">↩ Undo</button>
+    <button id="redo" type="button">↪ Redo</button>
+    <button id="clearAll" type="button" class="danger">🆕 Tozalash</button>
+  </div>
 
-<select id="frameStyle">
-
-<option value="none">
-Yo'q
-</option>
-
-<option value="white">
-Oq
-</option>
-
-<option value="black">
-Qora
-</option>
-
-<option value="gradient">
-Gradient
-</option>
-
-</select>
-
-<label>Qalinlik</label>
-
-<input
-type="range"
-id="frameSize"
-min="0"
-max="50"
-value="12">
-
-<hr>
-
-<button id="flipX">
-↔ Flip X
-</button>
-
-<button id="flipY">
-↕ Flip Y
-</button>
-
-<button id="deleteLayer">
-🗑 O'chirish
-</button>
-
-<button id="undo">
-↩ Undo
-</button>
-
-<button id="redo">
-↪ Redo
-</button>
-
-<hr>
-
-<button id="downloadPNG" class="green">
-⬇ PNG
-</button>
-
-<button id="downloadJPG" class="blue">
-⬇ JPG
-</button>
+  <div class="download-row">
+    <button id="downloadPNG" class="green" type="button">⬇ PNG yuklab olish</button>
+    <button id="downloadJPG" class="blue" type="button">⬇ JPG yuklab olish</button>
+  </div>
 
 </div>
 
-<div class="editor">
-
-<canvas
-id="canvas"
-width="1080"
-height="1080">
-</canvas>
-
-</div>
-
-<script src="script.js"></script>
-
+<script src="script.js" defer></script>
 </body>
-</html>
+  </html>
