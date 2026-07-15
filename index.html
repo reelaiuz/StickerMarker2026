@@ -3,26 +3,67 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>StickerMaker</title>
+<title>StickerMaker 2026</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="box">
+<div class="app">
 
-<h1>StickerMaker</h1>
+  <h1>🎨 StickerMaker</h1>
+  <p class="subtitle">Telegram & Instagram uchun stiker yarating</p>
 
-<input type="file" id="file" accept="image/*">
+  <!-- Rasm yuklash -->
+  <div class="upload-area" id="dropZone">
+    <input type="file" id="file" accept="image/*" hidden>
+    <div class="upload-icon">📁</div>
+    <p>Rasmni shu yerga tashlang yoki bosing</p>
+  </div>
 
-<canvas id="canvas" width="512" height="512"></canvas>
+  <!-- Canvas -->
+  <div class="canvas-wrap">
+    <canvas id="canvas" width="512" height="512"></canvas>
+  </div>
 
-<button id="create">Sticker yaratish</button>
+  <!-- Sozlamalar -->
+  <div class="controls">
 
-<button id="download">PNG yuklab olish</button>
+    <!-- Ramka uslubi -->
+    <label>Ramka uslubi</label>
+    <select id="frameStyle">
+      <option value="telegram">Telegram White</option>
+      <option value="black">Black Outline</option>
+      <option value="neon">Neon Glow</option>
+      <option value="golden">Golden</option>
+      <option value="comic">Comic</option>
+      <option value="bubble">Bubble</option>
+      <option value="double">Double Line</option>
+      <option value="shadow">Soft Shadow</option>
+    </select>
+
+    <!-- Outline qalinligi -->
+    <label>Qalinlik: <span id="thicknessVal">12</span>px</label>
+    <input type="range" id="thickness" min="0" max="30" value="12">
+
+    <!-- Zoom -->
+    <label>Zoom: <span id="zoomVal">100</span>%</label>
+    <input type="range" id="zoom" min="20" max="200" value="100">
+
+    <!-- Soya -->
+    <label class="check-label">
+      <input type="checkbox" id="shadow" checked> Soya qo'shish
+    </label>
+
+  </div>
+
+  <!-- Tugmalar -->
+  <div class="buttons">
+    <button id="create">✨ Stiker yaratish</button>
+    <button id="download" class="btn-download">⬇ PNG yuklab olish</button>
+  </div>
 
 </div>
 
 <script src="script.js"></script>
-
 </body>
-</html>
+  </html>
