@@ -1,173 +1,179 @@
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Segoe UI',Arial,sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-  background:#0d0d0d;
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
-  color:#fff;
+background:#171428;
+color:#fff;
+display:flex;
+height:100vh;
+overflow:hidden;
 }
 
-.app{
-  width:100%;
-  max-width:440px;
-  background:#1a1a2e;
-  padding:24px;
-  border-radius:24px;
-  text-align:center;
-  box-shadow:0 20px 60px rgba(0,0,0,.5);
+.sidebar{
+width:300px;
+background:#211d39;
+padding:20px;
+overflow-y:auto;
+box-shadow:0 0 20px rgba(0,0,0,.4);
 }
 
-h1{
-  font-size:28px;
-  margin-bottom:4px;
+.sidebar h2{
+font-size:28px;
+margin-bottom:20px;
+text-align:center;
 }
 
-.subtitle{
-  font-size:13px;
-  color:#888;
-  margin-bottom:20px;
+.sidebar hr{
+margin:20px 0;
+border:none;
+height:1px;
+background:#35304f;
 }
 
-/* Upload */
-.upload-area{
-  border:2px dashed #444;
-  border-radius:16px;
-  padding:30px 20px;
-  cursor:pointer;
-  transition:.3s;
-}
-
-.upload-area:hover{
-  border-color:#00c853;
-  background:rgba(0,200,83,.05);
-}
-
-.upload-area.dragover{
-  border-color:#00c853;
-  background:rgba(0,200,83,.1);
-}
-
-.upload-icon{
-  font-size:40px;
-  margin-bottom:8px;
-}
-
-.upload-area p{
-  font-size:14px;
-  color:#aaa;
-}
-
-/* Canvas */
-.canvas-wrap{
-  margin-top:20px;
-  border-radius:16px;
-  overflow:hidden;
-  background:#222;
-}
-
-canvas{
-  width:100%;
-  display:block;
-}
-
-/* Controls */
-.controls{
-  margin-top:20px;
-  text-align:left;
-}
-
-.controls label{
-  display:block;
-  font-size:13px;
-  color:#ccc;
-  margin-top:14px;
-  margin-bottom:4px;
-}
-
-.controls select,
-.controls input[type="range"]{
-  width:100%;
-  padding:10px;
-  border:none;
-  border-radius:10px;
-  font-size:15px;
-  background:#2a2a3e;
-  color:#fff;
-}
-
-.controls input[type="range"]{
-  padding:0;
-  height:6px;
-  -webkit-appearance:none;
-  appearance:none;
-  background:#333;
-  outline:none;
-  border-radius:3px;
-}
-
-.controls input[type="range"]::-webkit-slider-thumb{
-  -webkit-appearance:none;
-  width:20px;
-  height:20px;
-  background:#00c853;
-  border-radius:50%;
-  cursor:pointer;
-}
-
-.check-label{
-  display:flex !important;
-  align-items:center;
-  gap:8px;
-  cursor:pointer;
-}
-
-.check-label input{
-  width:18px;
-  height:18px;
-  accent-color:#00c853;
-}
-
-/* Buttons */
-.buttons{
-  margin-top:20px;
-  display:flex;
-  flex-direction:column;
-  gap:12px;
+.sidebar label{
+display:block;
+margin:12px 0 8px;
+font-size:15px;
+color:#ccc;
 }
 
 button{
-  width:100%;
-  padding:16px;
-  border:none;
-  border-radius:14px;
-  font-size:17px;
-  font-weight:600;
-  cursor:pointer;
-  transition:.2s;
+width:100%;
+padding:14px;
+margin-top:10px;
+border:none;
+border-radius:14px;
+cursor:pointer;
+font-size:16px;
+font-weight:bold;
+transition:.25s;
+background:#34304d;
+color:#fff;
 }
 
-#create{
-  background:#00c853;
-  color:#fff;
+button:hover{
+transform:translateY(-2px);
+background:#464168;
 }
 
-#create:hover{
-  background:#00b248;
+.green{
+background:#18b54a;
 }
 
-.btn-download{
-  background:#2979ff;
-  color:#fff;
+.green:hover{
+background:#16a142;
 }
 
-.btn-download:hover{
-  background:#1565c0;
-                  }
+.blue{
+background:#2f6cff;
+}
+
+.blue:hover{
+background:#2658cf;
+}
+
+input[type=range]{
+width:100%;
+margin-top:10px;
+accent-color:#1ed760;
+}
+
+select{
+width:100%;
+padding:14px;
+border:none;
+border-radius:12px;
+background:#34304d;
+color:white;
+font-size:16px;
+}
+
+.editor{
+flex:1;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#111;
+overflow:auto;
+}
+
+canvas{
+background:#222;
+border-radius:18px;
+box-shadow:0 0 35px rgba(0,0,0,.5);
+max-width:95%;
+max-height:95%;
+touch-action:none;
+}
+
+::-webkit-scrollbar{
+width:8px;
+height:8px;
+}
+
+::-webkit-scrollbar-thumb{
+background:#555;
+border-radius:20px;
+}
+
+::-webkit-scrollbar-track{
+background:transparent;
+}
+
+@media(max-width:900px){
+
+body{
+flex-direction:column;
+overflow:auto;
+}
+
+.sidebar{
+width:100%;
+height:auto;
+box-shadow:none;
+}
+
+.editor{
+height:70vh;
+}
+
+canvas{
+width:95%;
+height:auto;
+}
+
+button{
+font-size:15px;
+padding:13px;
+}
+
+}
+
+@media(max-width:500px){
+
+.sidebar{
+padding:15px;
+}
+
+.sidebar h2{
+font-size:24px;
+}
+
+button{
+padding:12px;
+font-size:14px;
+}
+
+select{
+font-size:14px;
+}
+
+label{
+font-size:14px;
+}
+
+}
